@@ -35,9 +35,10 @@ set scrolloff=3	" don't let cursor touch the edge of the viewpoint
 set splitright
 set splitbelow
 " set colorcolumn=+0
-if exists('&breakindent')
-  set breakindent      " Indent wrapped lines up to the same level
-endif
+"if exists('&breakindent')
+  "set breakindent      " Indent wrapped lines up to the same level
+"endif
+set smartindent
 set foldnestmax=1      " Only fold up to one level deep
 set list               " Show certain non-printing characters as printed
 " Show potential matches above completion, complete first immediately
@@ -92,8 +93,16 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
+" ----- Making Vim look good ------------------------------------------
 Plugin 'vim-airline/vim-airline'
 Plugin 'altercation/vim-colors-solarized'
+
+" ----- Vim as a programmer's text editor -----------------------------
+Plugin 'scrooloose/syntastic'
+
+" ----- Working with Git ----------------------------------------------
+Plugin 'airblade/vim-gitgutter'
+Plugin 'tpope/vim-fugitive'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -135,4 +144,14 @@ endif
 " Set the colorscheme
 colorscheme solarized
 
+" }}}
+" ----- scrooloose/syntastic settings --------- {{{
+let g:syntastic_error_symbol = '✘'
+let g:syntastic_warning_symbol = "▲"
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+" For c++11
+let g:syntaxstic_cpp_compiler = 'clang++'
+let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
 " }}}
