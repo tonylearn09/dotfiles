@@ -4,18 +4,6 @@
 " Modified:	2017 Apr 10
 " INSTALLATION INSTRUCTIONS
 "
-" Presumably, you've gotten your hands on this file because you forked my
-" dotfiles repository. I keep all my Vim plugins as submodules, so after you
-" clone you'll have to run
-"
-"     $ git submodule init
-"     $ git submodule update
-"
-" to grab the required dependencies. Once you've done this, you can either
-" manually move the `vimrc` file to `~/.vimrc` and the `vim/` folder to
-" `~/.vim`, or you can be a little smarter and use a tool like rcm
-" (https://github.com/thought
-
 
 " -------General setting------------------------------- {{{
 " Use Vim settings, rather than vi.
@@ -30,6 +18,7 @@ set number
 set ruler	" show the cursor position
 set showcmd	" display incomplete commands
 set incsearch
+set hlsearch
 set linebreak	" wrap line on 'word' boundaries
 set scrolloff=3	" don't let cursor touch the edge of the viewpoint
 set splitright
@@ -104,8 +93,12 @@ Plugin 'scrooloose/syntastic'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-fugitive'
 
+"----- Working with javascript -----------------------------------------
+Plugin 'pangloss/vim-javascript'
+
 call vundle#end()            " required
 filetype plugin indent on    " required
+set omnifunc=syntaxcomplete#Complete
 
 " }}}
 
@@ -135,7 +128,8 @@ if $SOLARIZED ==? "dark"
 elseif $SOLARIZED == "light"
   set background=light
 else
-  set background=dark
+  "set background=dark
+  set background=light
 endif
 
 " Uncomment the next line if your terminal is not configured for solarized
@@ -154,4 +148,5 @@ set statusline+=%*
 " For c++11
 let g:syntaxstic_cpp_compiler = 'clang++'
 let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
+" let g:syntastic_python_checkers=['pylint']
 " }}}
