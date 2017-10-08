@@ -13,6 +13,7 @@ set nocompatible
 " Allow backspacing in insert mode
 set backspace=indent,eol,start
 
+set encoding=utf-8
 set history=1000
 set number
 set ruler	" show the cursor position
@@ -28,8 +29,8 @@ set splitbelow
   "set breakindent      " Indent wrapped lines up to the same level
 "endif
 set smartindent
-set foldnestmax=1      " Only fold up to one level deep
-set list               " Show certain non-printing characters as printed
+set foldnestmax=2      " Only fold up to one level deep
+"set list               " Show certain non-printing characters as printed
 " Show potential matches above completion, complete first immediately
 set wildmenu
 set wildmode=full
@@ -56,8 +57,17 @@ noremap <silent> ^ g^
 noremap <silent> g^ ^
 noremap <silent> _ g_
 
+" Split navigation
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
 " Map jk in insert mode to get out
 inoremap <silent> jk <ESC>
+
+" Map folding (za) to Space
+nnoremap <Space> za
 
 " }}}
 " ----- Not-quite-general-but-don't-belong-anywhere-else Settings ------- {{{
@@ -96,9 +106,16 @@ Plugin 'tpope/vim-fugitive'
 "----- Working with javascript -----------------------------------------
 Plugin 'pangloss/vim-javascript'
 
+"----- Working with python ---------------------------------------------
+Plugin 'tmhedberg/SimpylFold'
+Plugin 'vim-scripts/indentpython.vim'
+
+" ----- YouCompleteMe
+"Plugin 'Valloric/YouCompleteMe'
+
 call vundle#end()            " required
 filetype plugin indent on    " required
-set omnifunc=syntaxcomplete#Complete
+"set omnifunc=syntaxcomplete#Complete
 
 " }}}
 
@@ -122,14 +139,17 @@ let g:airline#extensions#branch#enabled = 0
 " }}}
 
 " ----- altercation/vim-colors-solarized settings ----- {{{
-syntax enable
+if !exists("g:syntax_on")
+    syntax enable
+endif
+
 if $SOLARIZED ==? "dark"
   set background=dark
 elseif $SOLARIZED == "light"
   set background=light
 else
-  "set background=dark
-  set background=light
+  set background=dark
+  "set background=light
 endif
 
 " Uncomment the next line if your terminal is not configured for solarized
@@ -145,8 +165,20 @@ let g:syntastic_warning_symbol = "▲"
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+"let g:syntastic_check_on_open = 1
+"let g:syntastic_check_on_wq = 0
 " For c++11
 let g:syntaxstic_cpp_compiler = 'clang++'
 let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
-" let g:syntastic_python_checkers=['pylint']
+
+let g:syntastic_python_checkers=['pyflakes']
 " }}}
+
+
+" ------ tmhedberg/SimpylFold settings ------------ {{{
+let g:SimpylFold_docstring_preview = 1
+
+" ------- YouCompleteMe setting -------------------{{{
+"let g:ycm_python_binary_path = 'python'
