@@ -111,7 +111,7 @@ Plugin 'tmhedberg/SimpylFold'
 Plugin 'vim-scripts/indentpython.vim'
 
 " ----- YouCompleteMe
-"Plugin 'Valloric/YouCompleteMe'
+Plugin 'Valloric/YouCompleteMe'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -181,4 +181,7 @@ let g:syntastic_python_checkers=['pyflakes']
 let g:SimpylFold_docstring_preview = 1
 
 " ------- YouCompleteMe setting -------------------{{{
-"let g:ycm_python_binary_path = 'python'
+let g:ycm_python_binary_path = 'python'
+let mapleader=","
+let g:ycm_autoclose_preview_window_after_completion=1
+map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
