@@ -96,6 +96,9 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'altercation/vim-colors-solarized'
 
+" ----- Filesystem ----------------------------------------------------
+Plugin 'scrooloose/nerdtree'
+
 " ----- Vim as a programmer's text editor -----------------------------
 Plugin 'scrooloose/syntastic'
 
@@ -185,3 +188,15 @@ let g:ycm_python_binary_path = 'python'
 let mapleader=","
 let g:ycm_autoclose_preview_window_after_completion=1
 map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
+
+" ------- NerdTree --------------------------------{{{
+nnoremap <leader>f :NERDTreeToggle<CR>
+nnoremap <silent> <Leader>v :NERDTreeFind<CR>
+nnoremap <silent> <C-n> :NERDTreeFocus<CR>
+let NERDTreeQuitOnOpen = 1
+let NERDTreeDirArrows = 1
+let NERDTreeIgnore = ['\.pyc$']
+"let NERDTreeMinimalUI = 1
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+"autocmd VimEnter * NERDTree
+
