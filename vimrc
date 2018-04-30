@@ -97,7 +97,7 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'altercation/vim-colors-solarized'
 
 " ----- Filesystem ----------------------------------------------------
-Plugin 'scrooloose/nerdtree'
+"Plugin 'scrooloose/nerdtree'
 
 " ----- Vim as a programmer's text editor -----------------------------
 Plugin 'scrooloose/syntastic'
@@ -107,7 +107,7 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-fugitive'
 
 "----- Working with javascript -----------------------------------------
-Plugin 'pangloss/vim-javascript'
+"Plugin 'pangloss/vim-javascript'
 
 "----- Working with python ---------------------------------------------
 Plugin 'tmhedberg/SimpylFold'
@@ -187,6 +187,7 @@ let g:SimpylFold_docstring_preview = 1
 let g:ycm_python_binary_path = 'python'
 let mapleader=","
 let g:ycm_autoclose_preview_window_after_completion=1
+let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
 map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 " ------- NerdTree --------------------------------{{{
