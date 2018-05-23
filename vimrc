@@ -18,6 +18,7 @@ set history=1000
 set number
 set ruler	" show the cursor position
 set showcmd	" display incomplete commands
+set smartcase
 set incsearch
 set hlsearch
 set linebreak	" wrap line on 'word' boundaries
@@ -28,7 +29,7 @@ set splitbelow
 "if exists('&breakindent')
   "set breakindent      " Indent wrapped lines up to the same level
 "endif
-set smartindent
+set autoindent
 set foldnestmax=2      " Only fold up to one level deep
 "set list               " Show certain non-printing characters as printed
 " Show potential matches above completion, complete first immediately
@@ -37,8 +38,9 @@ set wildmode=full
 
 " Tab settings
 set expandtab          " Expand tabs into spaces
+set smarttab          " Uses shiftwidth instead of tabstop at start of the line
 set tabstop=4          " default to 4 spaces for a hard tab
-set softtabstop=4      " default to 4 spaces for the soft tab
+set softtabstop=4     " default to 4 spaces for the soft tab
 set shiftwidth=4       " for when <TAB> is pressed at the beginning of a line
 
 " }}}
@@ -111,7 +113,7 @@ Plugin 'tpope/vim-fugitive'
 
 "----- Working with python ---------------------------------------------
 Plugin 'tmhedberg/SimpylFold'
-Plugin 'vim-scripts/indentpython.vim'
+"Plugin 'vim-scripts/indentpython.vim'
 
 " ----- YouCompleteMe
 Plugin 'Valloric/YouCompleteMe'
@@ -200,4 +202,3 @@ let NERDTreeIgnore = ['\.pyc$']
 "let NERDTreeMinimalUI = 1
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 "autocmd VimEnter * NERDTree
-
